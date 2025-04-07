@@ -1,4 +1,4 @@
-import { Card, Form, Alert, Button } from "react-bootstrap";
+import { Card, Form, Alert, Button, Container } from "react-bootstrap";
 import { useState } from "react";
 import { registerUser } from "@/lib/authenticate";
 import { useRouter } from "next/router";
@@ -21,10 +21,14 @@ export default function Register(props) {
   }
 
   return (
-    <>
-      <Card bg="light">
+    <Container
+      className="py-5"
+      style={{ maxWidth: "500px", color: "#e0e0e0", backgroundColor: "#121212" }}
+    >
+      <Card className="bg-dark text-light border-0 rounded-4 shadow-sm">
         <Card.Body>
-          <h2>Register</h2>Register for an account:
+          <h2 className="text-info mb-3">Register</h2>
+          <p className="text-muted">Register for an account:</p>
         </Card.Body>
       </Card>
       <br />
@@ -34,8 +38,7 @@ export default function Register(props) {
           <Form.Control
             type="text"
             value={user}
-            id="userName"
-            name="userName"
+            className="bg-dark text-light border-secondary"
             onChange={(e) => setUser(e.target.value)}
           />
         </Form.Group>
@@ -45,8 +48,7 @@ export default function Register(props) {
           <Form.Control
             type="password"
             value={password}
-            id="password"
-            name="password"
+            className="bg-dark text-light border-secondary"
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
@@ -56,8 +58,7 @@ export default function Register(props) {
           <Form.Control
             type="password"
             value={password2}
-            id="password2"
-            name="password2"
+            className="bg-dark text-light border-secondary"
             onChange={(e) => setPassword2(e.target.value)}
           />
         </Form.Group>
@@ -68,10 +69,10 @@ export default function Register(props) {
           </>
         )}
         <br />
-        <Button variant="primary" className="pull-right" type="submit">
+        <Button variant="outline-info" className="float-end" type="submit">
           Register
         </Button>
       </Form>
-    </>
+    </Container>
   );
 }

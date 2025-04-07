@@ -33,6 +33,7 @@ export default function MainNav() {
       setSearchHistory(await addToHistory(`title=true&q=${searchField}`));
     }
   }
+
   function logout() {
     setIsExpanded(false);
     removeToken();
@@ -43,11 +44,17 @@ export default function MainNav() {
     <>
       <Navbar
         expand="lg"
-        className="fixed-top navbar-dark bg-primary"
+        fixed="top"
+        variant="dark"
+        style={{
+          backgroundColor: "#1a1a1a",
+          borderBottom: "1px solid #2c2c2c",
+        }}
+        className="shadow-sm"
         expanded={isExpanded}
       >
         <Container>
-          <Navbar.Brand>Deep Patel</Navbar.Brand>
+          <Navbar.Brand className="fw-bold text-info">Deep Patel</Navbar.Brand>
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
             onClick={() => setIsExpanded((e) => !e)}
@@ -58,6 +65,7 @@ export default function MainNav() {
                 <Nav.Link
                   active={router.pathname === "/"}
                   onClick={() => setIsExpanded(false)}
+                  className="text-light"
                 >
                   Home
                 </Nav.Link>
@@ -67,6 +75,7 @@ export default function MainNav() {
                   <Nav.Link
                     active={router.pathname === "/search"}
                     onClick={() => setIsExpanded(false)}
+                    className="text-light"
                   >
                     Advanced Search
                   </Nav.Link>
@@ -75,21 +84,30 @@ export default function MainNav() {
             </Nav>
             {token && (
               <>
-                <Form className="d-flex" onSubmit={submitForm}>
+                <Form className="d-flex me-3" onSubmit={submitForm}>
                   <Form.Control
                     type="search"
                     placeholder="Search"
                     className="me-2"
+                    style={{
+                      backgroundColor: "#252525",
+                      color: "#ffffff",
+                      borderColor: "#444",
+                    }}
                     aria-label="Search"
                     value={searchField}
                     onChange={(e) => setSearchField(e.target.value)}
                   />
-                  <Button type="submit" variant="success">
+                  <Button type="submit" variant="outline-info">
                     Search
                   </Button>
                 </Form>
                 <Nav>
-                  <NavDropdown title={token.userName} id="basic-nav-dropdown">
+                  <NavDropdown
+                    title={<span className="text-info">{token.userName}</span>}
+                    id="basic-nav-dropdown"
+                    menuVariant="dark"
+                  >
                     <Link href="/favourites" passHref legacyBehavior>
                       <NavDropdown.Item
                         active={router.pathname === "/favourites"}
@@ -108,7 +126,10 @@ export default function MainNav() {
                       </NavDropdown.Item>
                     </Link>
 
-                    <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item onClick={logout}>
+                      Logout
+                    </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
               </>
@@ -119,6 +140,7 @@ export default function MainNav() {
                   <Nav.Link
                     active={router.pathname === "/register"}
                     onClick={() => setIsExpanded(false)}
+                    className="text-info"
                   >
                     Register
                   </Nav.Link>
@@ -127,6 +149,7 @@ export default function MainNav() {
                   <Nav.Link
                     active={router.pathname === "/login"}
                     onClick={() => setIsExpanded(false)}
+                    className="text-info"
                   >
                     Login
                   </Nav.Link>

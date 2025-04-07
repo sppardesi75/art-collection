@@ -1,4 +1,4 @@
-import { Col, Row, Button, Form } from "react-bootstrap";
+import { Col, Row, Button, Form, Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useAtom } from "jotai";
@@ -12,35 +12,38 @@ export default function AdvancedSearch() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm(); // no default values for now
+  } = useForm();
+
   const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
 
   async function submitForm(data) {
-    let queryString = "";
-
-    queryString += `${data.searchBy}=true`;
+    let queryString = `${data.searchBy}=true`;
 
     if (data.geoLocation) queryString += `&geoLocation=${data.geoLocation}`;
-
     if (data.medium) queryString += `&medium=${data.medium}`;
-
     queryString += `&isOnView=${data.isOnView}`;
     queryString += `&isHighlight=${data.isHighlight}`;
-
     queryString += `&q=${data.q}`;
+
     setSearchHistory(await addToHistory(queryString));
     router.push(`/artwork?${queryString}`);
   }
 
   return (
-    <>
+    <Container
+      className="py-5"
+      style={{ backgroundColor: "#121212", color: "#e0e0e0" }}
+    >
+      <h2 className="text-info mb-4">Advanced Search</h2>
       <Form onSubmit={handleSubmit(submitForm)}>
         <Row>
           <Col>
             <Form.Group className="mb-3">
               <Form.Label>Search Query</Form.Label>
               <Form.Control
-                className={errors.q && "is-invalid"}
+                className={`bg-dark text-light border-secondary ${
+                  errors.q ? "is-invalid" : ""
+                }`}
                 type="text"
                 placeholder=""
                 {...register("q", { required: true })}
@@ -48,14 +51,20 @@ export default function AdvancedSearch() {
             </Form.Group>
           </Col>
         </Row>
+
         <Row>
           <Col md={4}>
-            <Form.Label>Search By</Form.Label>
-            <Form.Select {...register("searchBy")} className="mb-3">
-              <option value="title">Title</option>
-              <option value="tags">Tags</option>
-              <option value="artistOrCulture">Artist or Culture</option>
-            </Form.Select>
+            <Form.Group className="mb-3">
+              <Form.Label>Search By</Form.Label>
+              <Form.Select
+                {...register("searchBy")}
+                className="bg-dark text-light border-secondary"
+              >
+                <option value="title">Title</option>
+                <option value="tags">Tags</option>
+                <option value="artistOrCulture">Artist or Culture</option>
+              </Form.Select>
+            </Form.Group>
           </Col>
           <Col md={4}>
             <Form.Group className="mb-3">
@@ -63,13 +72,11 @@ export default function AdvancedSearch() {
               <Form.Control
                 type="text"
                 placeholder=""
+                className="bg-dark text-light border-secondary"
                 {...register("geoLocation")}
               />
               <Form.Text className="text-muted">
-                Case Sensitive String (ie &quot;Europe&quot;,
-                &quot;France&quot;, &quot;Paris&quot;, &quot;China&quot;,
-                &quot;New York&quot;, etc.), with multiple values separated by
-                the | operator
+                Case Sensitive String (e.g., "Europe", "Paris", "China"), use | to separate
               </Form.Text>
             </Form.Group>
           </Col>
@@ -79,40 +86,42 @@ export default function AdvancedSearch() {
               <Form.Control
                 type="text"
                 placeholder=""
+                className="bg-dark text-light border-secondary"
                 {...register("medium")}
               />
               <Form.Text className="text-muted">
-                Case Sensitive String (ie: &quot;Ceramics&quot;,
-                &quot;Furniture&quot;, &quot;Paintings&quot;,
-                &quot;Sculpture&quot;, &quot;Textiles&quot;, etc.), with
-                multiple values separated by the | operator
+                Case Sensitive String (e.g., "Paintings", "Sculpture"), use | to separate
               </Form.Text>
             </Form.Group>
           </Col>
         </Row>
+
         <Row>
           <Col>
             <Form.Check
               type="checkbox"
               label="Highlighted"
+              className="text-light"
               {...register("isHighlight")}
             />
             <Form.Check
               type="checkbox"
               label="Currently on View"
+              className="text-light"
               {...register("isOnView")}
             />
           </Col>
         </Row>
+
         <Row>
           <Col>
             <br />
-            <Button variant="primary" type="submit">
+            <Button variant="outline-info" type="submit">
               Submit
             </Button>
           </Col>
         </Row>
       </Form>
-    </>
+    </Container>
   );
 }

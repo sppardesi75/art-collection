@@ -2,6 +2,7 @@ import "@/styles/bootstrap.min.css";
 import Layout from "@/components/Layout";
 import { SWRConfig } from "swr";
 import RouteGuard from "@/components/RouteGuard";
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (

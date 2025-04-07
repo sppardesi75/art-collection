@@ -1,4 +1,4 @@
-import { Card, Form, Alert, Button } from "react-bootstrap";
+import { Card, Form, Alert, Button, Container } from "react-bootstrap";
 import { useState } from "react";
 import { authenticateUser } from "@/lib/authenticate";
 import { useRouter } from "next/router";
@@ -31,10 +31,14 @@ export default function Login(props) {
   }
 
   return (
-    <>
-      <Card bg="light">
+    <Container
+      className="py-5"
+      style={{ maxWidth: "500px", color: "#e0e0e0", backgroundColor: "#121212" }}
+    >
+      <Card className="bg-dark text-light border-0 rounded-4 shadow-sm">
         <Card.Body>
-          <h2>Login</h2>Enter your login information below:
+          <h2 className="text-info mb-3">Login</h2>
+          <p className="text-muted">Enter your login information below:</p>
         </Card.Body>
       </Card>
       <br />
@@ -44,8 +48,7 @@ export default function Login(props) {
           <Form.Control
             type="text"
             value={user}
-            id="userName"
-            name="userName"
+            className="bg-dark text-light border-secondary"
             onChange={(e) => setUser(e.target.value)}
           />
         </Form.Group>
@@ -55,8 +58,7 @@ export default function Login(props) {
           <Form.Control
             type="password"
             value={password}
-            id="password"
-            name="password"
+            className="bg-dark text-light border-secondary"
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
@@ -66,12 +68,11 @@ export default function Login(props) {
             <Alert variant="danger">{warning}</Alert>
           </>
         )}
-
         <br />
-        <Button variant="primary" className="pull-right" type="submit">
+        <Button variant="outline-info" className="float-end" type="submit">
           Login
         </Button>
       </Form>
-    </>
+    </Container>
   );
 }
