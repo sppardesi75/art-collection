@@ -54,7 +54,7 @@ export default function MainNav() {
         expanded={isExpanded}
       >
         <Container>
-          <Navbar.Brand className="fw-bold text-info">Deep Patel</Navbar.Brand>
+          <Navbar.Brand className="fw-bold text-info">Sanskar Pardesi</Navbar.Brand>
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
             onClick={() => setIsExpanded((e) => !e)}
