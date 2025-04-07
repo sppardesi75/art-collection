@@ -1,38 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Art Collection
+
+A modern and responsive web application built with Next.js that lets users search, browse, and manage their favorite artworks.
+
+## Features
+
+- 🔍 Search for artworks
+- 🖼 View detailed artwork information
+- ❤️ Add and remove artworks from favourites
+- 🕓 Track search and view history
+- 🔐 Secure user authentication (Login/Register)
+- ⚡ Fast and responsive UI with Bootstrap
+
+## Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/)
+- **Styling**: CSS Modules, Bootstrap
+- **Auth & Data**: JWT Authentication with external API
+- **State Handling**: Client-side state (history & favourites)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js >= 14.x
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/sppardesi75/art-collection.git
+cd art-collection
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Set up environment variables:
+
+Create a `.env.local` file in the root directory and add:
+
+```env
+NEXT_PUBLIC_API_URL=https://user-api-sanskarpardesi-gmailcoms-projects.vercel.app/api/user
+```
+
+4. Run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Project Structure
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```
+components/         # Reusable UI components
+lib/                # Utility logic (auth, user data)
+pages/              # Next.js pages and routing
+public/             # Static assets and icons
+styles/             # Global and module CSS files
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This project can be deployed on [Vercel](https://vercel.com/) with no additional setup.
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
+This project is licensed under the [MIT License](LICENSE).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The app uses an external User API deployed at:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+https://user-api-sanskarpardesi-gmailcoms-projects.vercel.app/api/user
+```
