@@ -2,6 +2,9 @@
 
 A modern and responsive web application built with Next.js that lets users search, browse, and manage their favorite artworks.
 
+##Hosted on Vercel
+https://art-collection.vercel.app/
+
 ## Features
 
 - 🔍 Search for artworks
